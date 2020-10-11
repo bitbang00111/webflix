@@ -8,3 +8,6 @@
 /DevOpsDemo.Data/obj
 /DevOpsDemo/DevOpsDemo.Web.Tests/obj/Debug
 /DevOpsDemo.Web/obj/Debug
+/DevOpsDemo/DevOpsDemo.Web.Tests/bin/Debug
+/DevOpsDemo.Data/bin/Debug
+/DevOpsDemo.Web/bin
