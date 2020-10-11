@@ -2,39 +2,55 @@
     ViewBag.Title = "Webflix";
     @model List<DevOpsDemo.Web.ViewModels.MovieViewModel>
     int colCount = 0;
+    int counter = 0;
 }
 
-<h1>Catálogo disponible en Webflix:</h1>
+<h1>Catálogo disponible en Webflix V.1</h1>
 @foreach (var movie in Model)
 {
+    counter++;
     if (colCount == 0)
     {
-        @Html.Raw("<div class='row'>");
+        @Html.Raw("<div class='row row-movies'>");
     }
 
     if (colCount < 3)
     {
         colCount++;
         <div class="col-md-4">
+            <img class="picture-movie" src="@movie.ImgUrl" alt="@movie.ImgUrl" title="@movie.ImgUrl"/>
             <h2>@movie.Name</h2>
-            <p>
-                @movie.Description
-            </p>
+            <div class="rate">
+                <input type="radio" id="star5_@counter" name="rate_@counter" value="5" @(movie.Rating == 5 ? "checked": "")/>
+                <label for="star5_@counter" title="text">5 stars</label>
+                <input type="radio" id="star4_@counter" name="rate_@counter" value="4" @(movie.Rating == 4 ? "checked": "")/>
+                <label for="star4_@counter" title="text">4 stars</label>
+                <input type="radio" id="star3_@counter" name="rate_@counter" value="3" @(movie.Rating == 3 ? "checked": "")/>
+                <label for="star3_@counter" title="text">3 stars</label>
+                <input type="radio" id="star2_@counter" name="rate_@counter" value="2" @(movie.Rating == 2 ? "checked": "")/>
+                <label for="star2_@counter" title="text">2 stars</label>
+                <input type="radio" id="star1_@counter" name="rate_@counter" value="1" @(movie.Rating == 1 ? "checked": "")/>
+                <label for="star1_@counter" title="text">1 star</label>
+            </div>
+            @*<p>
+                movie.Description
+            </p>*@
             <h4>Director:</h4>
             @movie.DirectorName
             <h4>Actores:</h4>
-            <ul>
+            <ul class="list">
                 @foreach (var actor in movie.Actors)
                 {
                     <li>
-                        @actor.FirstName @actor.LastName
+                        - @actor.FirstName @actor.LastName
                     </li>
                 }
             </ul>
-            <p><a class="btn btn-default" href="@movie.TrailerUrl">Trailer &raquo;</a></p>
+            <p><a class="btn btn-default" href="@movie.TrailerUrl" target="_blank">Trailer &raquo;</a></p>
         </div>
     }
-    else
+
+    if(colCount >= 3)
     {
         colCount = 0;
         @Html.Raw("</div>");

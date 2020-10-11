@@ -26,24 +26,29 @@ namespace DevOpsDemo.Web.Controllers
                               TrailerUrl = m.TrailerUrl,
                               Year = m.Year,
                               DirectorName = m.Director.FirstName + " " + m.Director.LastName,
-                              Rating = m.Rating.Count() > 0 ? m.Rating.Sum(x => x.Star) / m.Rating.Count() : 0,
+                              Rating = m.Rating.Count() > 0 ? (m.Rating.Sum(x => x.Star) / m.Rating.Count())/2 : 0,
                               Actors = m.Actor.Select(x => new ActorViewModel { ID = x.ID, FirstName = x.FirstName, LastName = x.LastName }).ToList()
                           }).ToList();
             }
+
+            #region Unit test: Division by zero
+            //int i = 0;
+            //int j = 10 / i;
+            #endregion
 
             return View(movies);
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Webflix - Movie streaming app";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Página de contacto";
 
             return View();
         }

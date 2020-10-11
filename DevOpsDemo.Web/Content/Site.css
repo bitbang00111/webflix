@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #000;
+    color: #ccc;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -22,3 +24,85 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Web Styles Nextret */
+.webflix h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 1.5rem;
+    color: #da291c;
+}
+.webflix h2, h3, h4 {
+    color: #fff;
+}
+
+.webflix ul.list li {
+    list-style: none;
+}
+.webflix .row-movies .picture-movie {
+    border: 5px double #fff;
+    position: relative;
+    width:  20rem;
+    height: 27rem;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+.webflix .row-movies .btn {
+    border-radius: 0;
+    background-color: #da291c;
+    color:#fff;
+    border-radius: 0;
+}
+
+.webflix .row-movies .btn:hover{
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    height: 4.5rem;
+    width: 12.5rem;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:2.5rem;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+/*End Web Styles Nextret */
