@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Webflix";
+    @model List<DevOpsDemo.Web.ViewModels.MovieViewModel>
+    int colCount = 0;
+}
+
+<h1>Catálogo disponible en Webflix:</h1>
+@foreach (var movie in Model)
+{
+    if (colCount == 0)
+    {
+        @Html.Raw("<div class='row'>");
+    }
+
+    if (colCount < 3)
+    {
+        colCount++;
+        <div class="col-md-4">
+            <h2>@movie.Name</h2>
+            <p>
+                @movie.Description
+            </p>
+            <h4>Director:</h4>
+            @movie.DirectorName
+            <h4>Actores:</h4>
+            <ul>
+                @foreach (var actor in movie.Actors)
+                {
+                    <li>
+                        @actor.FirstName @actor.LastName
+                    </li>
+                }
+            </ul>
+            <p><a class="btn btn-default" href="@movie.TrailerUrl">Trailer &raquo;</a></p>
+        </div>
+    }
+    else
+    {
+        colCount = 0;
+        @Html.Raw("</div>");
+    }
+}
+@if (colCount < 3 && colCount > 0)
+{
+    colCount = 0;
+    @Html.Raw("</div>");
+}

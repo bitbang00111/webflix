@@ -1,0 +1,3 @@
+﻿something is up with v6.3.0 (no permite gestionar la BBDD desde el proyecto web).
+Visual studio 2019: Uninstall-Package EntityFramework -Force
+Install-Package EntityFramework -Pre -Version 6.2.0

@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/DevOpsDemo/.vs/DevOpsDemo
+/DevOpsDemo/packages
+/DevOpsDemo.Data/obj
+/DevOpsDemo/DevOpsDemo.Web.Tests/obj/Debug
+/DevOpsDemo.Web/obj/Debug

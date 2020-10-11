@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevOpsDemo.Data", "..\DevOpsDemo.Data\DevOpsDemo.Data.csproj", "{7CF166B0-F32A-4D2C-9341-F23577679E72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevOpsDemo.Web", "..\DevOpsDemo.Web\DevOpsDemo.Web.csproj", "{F1892E58-EE43-40B7-9E0F-B7A137F9AE48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevOpsDemo.Web.Tests", "DevOpsDemo.Web.Tests\DevOpsDemo.Web.Tests.csproj", "{B8040848-BC68-45DA-963B-33EA9C23A232}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CF166B0-F32A-4D2C-9341-F23577679E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CF166B0-F32A-4D2C-9341-F23577679E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CF166B0-F32A-4D2C-9341-F23577679E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CF166B0-F32A-4D2C-9341-F23577679E72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1892E58-EE43-40B7-9E0F-B7A137F9AE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1892E58-EE43-40B7-9E0F-B7A137F9AE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1892E58-EE43-40B7-9E0F-B7A137F9AE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1892E58-EE43-40B7-9E0F-B7A137F9AE48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8040848-BC68-45DA-963B-33EA9C23A232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8040848-BC68-45DA-963B-33EA9C23A232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8040848-BC68-45DA-963B-33EA9C23A232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8040848-BC68-45DA-963B-33EA9C23A232}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DD8F880A-5C6D-4704-BCE9-D254C8B883F2}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://nextret.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ..\\DevOpsDemo.Data\\DevOpsDemo.Data.csproj
+		SccProjectName1 = ../DevOpsDemo.Data
+		SccLocalPath1 = ..\\DevOpsDemo.Data
+		SccProjectUniqueName2 = ..\\DevOpsDemo.Web\\DevOpsDemo.Web.csproj
+		SccProjectName2 = ../DevOpsDemo.Web
+		SccLocalPath2 = ..\\DevOpsDemo.Web
+		SccProjectUniqueName3 = DevOpsDemo.Web.Tests\\DevOpsDemo.Web.Tests.csproj
+		SccProjectName3 = DevOpsDemo.Web.Tests
+		SccLocalPath3 = DevOpsDemo.Web.Tests
+	EndGlobalSection
+EndGlobal
