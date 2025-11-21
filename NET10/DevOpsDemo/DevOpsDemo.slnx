@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DevOpsDemo.Data/DevOpsDemo.Data.csproj" Id="96a29cad-c52c-4380-9fa6-b02b0dec709c" />
+  <Project Path="DevOpsDemo/DevOpsDemo.Web.csproj" />
+</Solution>
