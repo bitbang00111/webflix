@@ -12,3 +12,8 @@
 /DevOpsDemo.Data/bin/Debug
 /DevOpsDemo.Web/bin
 /DevOpsDemo.Web/obj/Release
+/NET10/DevOpsDemo/DevOpsDemo/bin/Debug/net10.0
+/NET10/DevOpsDemo/.vs
+/NET10/DevOpsDemo/DevOpsDemo/obj
+/NET10/DevOpsDemo/DevOpsDemo.Data/bin/Debug/net10.0
+/NET10/DevOpsDemo/DevOpsDemo.Data/obj
