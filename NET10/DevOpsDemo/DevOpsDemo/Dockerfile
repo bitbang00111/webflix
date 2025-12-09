@@ -1,55 +1,60 @@
-## Consulte https://aka.ms/customizecontainer para aprender a personalizar su contenedor de depuración y cómo Visual Studio usa este Dockerfile para compilar sus imágenes para una depuración más rápida.
-#
-## Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
-#FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
-#USER $APP_UID
-#WORKDIR /app
-#EXPOSE 8080
-#EXPOSE 8081
-#
-#
-## Esta fase se usa para compilar el proyecto de servicio
 #FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 #ARG BUILD_CONFIGURATION=Release
 #WORKDIR /src
-#COPY ["NET10/DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj", "NET10/DevOpsDemo/DevOpsDemo/"]
-#RUN dotnet restore "./NET10/DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj"
+#
+## csproj y Dockerfile están en la misma carpeta en el contexto
+#COPY ["DevOpsDemo.Web.csproj", "./"]
+#RUN dotnet restore "DevOpsDemo.Web.csproj"
+#
+## ahora sí copiamos todo el código
 #COPY . .
-#WORKDIR "/src/NET10/DevOpsDemo/DevOpsDemo"
+#
+#WORKDIR "/src"
 #RUN dotnet build "DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 #
-## Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
 #FROM build AS publish
 #ARG BUILD_CONFIGURATION=Release
 #RUN dotnet publish "DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 #
-## Esta fase se usa en producción o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuración de depuración)
-#FROM base AS final
+#FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
 #WORKDIR /app
+#EXPOSE 8080
+#EXPOSE 8081
 #COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "DevOpsDemo.Web.dll"]
+#
 
+# Fase de build
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-# csproj y Dockerfile están en la misma carpeta en el contexto
-COPY ["DevOpsDemo.Web.csproj", "./"]
-RUN dotnet restore "DevOpsDemo.Web.csproj"
+# Copiamos los csproj de Web y Data
+COPY ["DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj", "DevOpsDemo/DevOpsDemo/"]
+COPY ["DevOpsDemo/DevOpsDemo.Data/DevOpsDemo.Data.csproj", "DevOpsDemo/DevOpsDemo.Data/"]
 
-# ahora sí copiamos todo el código
+# Restauramos dependencias del proyecto web (que ya conoce el Data)
+RUN dotnet restore "DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj"
+
+# Copiamos TODO el código (ahora que el restore está cacheado)
 COPY . .
 
-WORKDIR "/src"
+# Nos vamos a la carpeta del proyecto web
+WORKDIR "/src/DevOpsDemo/DevOpsDemo"
+
+# Compilamos
 RUN dotnet build "DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
+# Publicamos
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS base
+# Imagen final
+FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "DevOpsDemo.Web.dll"]
+
