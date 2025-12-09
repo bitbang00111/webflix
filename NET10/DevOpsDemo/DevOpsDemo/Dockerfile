@@ -12,16 +12,16 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["NET10/DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj", "NET10/DevOpsDemo/"]
+COPY ["NET10/DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj", "NET10/DevOpsDemo/DevOpsDemo/"]
 RUN dotnet restore "./NET10/DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj"
 COPY . .
 WORKDIR "/src/NET10/DevOpsDemo/DevOpsDemo"
-RUN dotnet build "./DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Esta fase se usa en producción o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuración de depuración)
 FROM base AS final
