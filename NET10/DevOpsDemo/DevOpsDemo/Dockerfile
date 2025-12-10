@@ -32,8 +32,8 @@ WORKDIR /src
 # Copiamos los csproj de Web y Data
 #COPY ["DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj", "DevOpsDemo/DevOpsDemo/"]
 #COPY ["DevOpsDemo/DevOpsDemo.Data/DevOpsDemo.Data.csproj", "DevOpsDemo/DevOpsDemo.Data/"]
-COPY ["DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj", "DevOpsDemo/"]
-COPY ["DevOpsDemo/DevOpsDemo.Data/DevOpsDemo.Data.csproj", "DevOpsDemo.Data/"]
+COPY ["DevOpsDemo/DevOpsDemo.Web.csproj", "DevOpsDemo/"]
+COPY ["DevOpsDemo.Data/DevOpsDemo.Data.csproj", "DevOpsDemo.Data/"]
 
 # Restauramos dependencias del proyecto web (que ya conoce el Data)
 #RUN dotnet restore "DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj"
