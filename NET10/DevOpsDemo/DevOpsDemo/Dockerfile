@@ -30,11 +30,14 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
 # Copiamos los csproj de Web y Data
-COPY ["DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj", "DevOpsDemo/DevOpsDemo/"]
-COPY ["DevOpsDemo/DevOpsDemo.Data/DevOpsDemo.Data.csproj", "DevOpsDemo/DevOpsDemo.Data/"]
+#COPY ["DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj", "DevOpsDemo/DevOpsDemo/"]
+#COPY ["DevOpsDemo/DevOpsDemo.Data/DevOpsDemo.Data.csproj", "DevOpsDemo/DevOpsDemo.Data/"]
+COPY ["DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj", "DevOpsDemo/"]
+COPY ["DevOpsDemo/DevOpsDemo.Data/DevOpsDemo.Data.csproj", "DevOpsDemo.Data/"]
 
 # Restauramos dependencias del proyecto web (que ya conoce el Data)
-RUN dotnet restore "DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj"
+#RUN dotnet restore "DevOpsDemo/DevOpsDemo/DevOpsDemo.Web.csproj"
+RUN dotnet restore "DevOpsDemo/DevOpsDemo.Web.csproj"
 
 # Copiamos TODO el código (ahora que el restore está cacheado)
 COPY . .
