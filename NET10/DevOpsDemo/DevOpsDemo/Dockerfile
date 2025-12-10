@@ -43,7 +43,8 @@ RUN dotnet restore "DevOpsDemo/DevOpsDemo.Web.csproj"
 COPY . .
 
 # Nos vamos a la carpeta del proyecto web
-WORKDIR "/src/DevOpsDemo/DevOpsDemo"
+#WORKDIR "/src/DevOpsDemo/DevOpsDemo"
+WORKDIR "/src/DevOpsDemo"
 
 # Compilamos
 RUN dotnet build "DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
@@ -51,6 +52,7 @@ RUN dotnet build "DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/build
 # Publicamos
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
+WORKDIR "/src/DevOpsDemo"
 RUN dotnet publish "DevOpsDemo.Web.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Imagen final
